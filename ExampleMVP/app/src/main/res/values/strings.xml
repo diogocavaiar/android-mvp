@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ExampleMVP</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="user_error">User error!</string>
+    <string name="password_error">Password error!</string>
+    <string name="invalid_login">Ivalid login!</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="nothing_to_show">NOTHING TO SHOW</string>
+    <string name="title_activity_stock_register">UserRegister</string>
+    <string name="status_view_message">Please Fill All The Fields</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="user_email">Email</string>
+    <string name="save">Save</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="item_3">Item 3</string>
+</resources>
