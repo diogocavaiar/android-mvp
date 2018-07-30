@@ -26,6 +26,11 @@ public class ItemTwoFragment extends BaseFragment {
     }
 
     @Override
+    protected boolean getHasOptionsMenu() {
+        return false;
+    }
+
+    @Override
     protected void init() {
 
     }

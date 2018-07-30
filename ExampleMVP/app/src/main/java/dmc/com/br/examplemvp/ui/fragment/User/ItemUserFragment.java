@@ -6,7 +6,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -21,7 +25,7 @@ import dmc.com.br.examplemvp.data.source.local.LocalDataSource;
 import dmc.com.br.examplemvp.ui.base.BaseFragment;
 import dmc.com.br.examplemvp.ui.activity.userregister.UserRegister;
 
-public class ItemUserFragment extends BaseFragment implements ItemFragmentUserPresenterView, IClickRecyclerView<User> {
+public class ItemUserFragment extends BaseFragment implements ItemFragmentUserPresenterView, IClickRecyclerView<User>, SearchView.OnQueryTextListener {
 
     private static int USER_REGISTER = 10;
 
@@ -56,6 +60,11 @@ public class ItemUserFragment extends BaseFragment implements ItemFragmentUserPr
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_item_one;
+    }
+
+    @Override
+    protected boolean getHasOptionsMenu() {
+        return true;
     }
 
     @Override
@@ -94,5 +103,26 @@ public class ItemUserFragment extends BaseFragment implements ItemFragmentUserPr
     public void onClickDelete(User user) {
         mPresenter.delete(user);
         mAdapter.removeUser(user);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.item_menu_main, menu);
+        MenuItem item = menu.findItem(R.id.menu_pesquisar);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(this);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(final String query) {
+        mAdapter.getFilter().filter(query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(final String newText) {
+        mAdapter.getFilter().filter(newText);
+        return false;
     }
 }

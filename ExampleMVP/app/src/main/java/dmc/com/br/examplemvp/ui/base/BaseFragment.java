@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,9 +29,17 @@ public abstract class BaseFragment extends Fragment {
         return loadView(inflater, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(getHasOptionsMenu());
+    }
+
     protected abstract View loadView(LayoutInflater inflater, final ViewGroup container, final boolean savedInstanceState);
 
     protected abstract int getLayoutId();
+
+    protected abstract boolean getHasOptionsMenu();
 
     protected abstract void init();
 }
